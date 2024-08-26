@@ -23,6 +23,12 @@ class  UnformattedClassA
 
                 collect(Collectors.toSet());
 
+        //@formatter:off
+        System.
+                out
+                .println("unformatted stuff");
+        //@formatter:on
+
     }
 
 }
