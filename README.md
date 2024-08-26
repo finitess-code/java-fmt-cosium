@@ -45,6 +45,8 @@ Before formatting:
 package com.finitess.fmtcosium;
 
 import java.util.*;
+import java.util.stream.Collectors;
+import java.nio.*;
 import org.springframework.beans.factory.annotation.Value;
 import java.util.UUID;
 
@@ -58,6 +60,12 @@ class  UnformattedClassA
         System.
                 out
                 .println("hello");
+
+        List.of("1", "2",     "3").stream().map( Integer::parseInt    )
+
+                .filter(number -> number % 2 == 0).
+
+                collect(Collectors.toSet());
 
     }
 
@@ -76,18 +84,25 @@ After formatting:
 ```java
 package com.finitess.fmtcosium;
 
+import java.nio.*;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class UnformattedClassA {
 
     void hello() {
         //        this should return hello
         System.out.println("hello");
+
+        List.of("1", "2", "3").stream()
+                .map(Integer::parseInt)
+                .filter(number -> number % 2 == 0)
+                .collect(Collectors.toSet());
     }
 }
 
-class SomeInnerClassA {
-}
+class SomeInnerClassA {}
+
 ```
 
 ### Pros
@@ -101,3 +116,5 @@ class SomeInnerClassA {
 ### Cons
 
 - Does not seem to detect/remove wildcard unused imports
+- Does not support other formatters (for example, Palantir)
+- Created `#!/bin/bash` hook is not platform independent, should be `#!/usr/bin/env bash`
