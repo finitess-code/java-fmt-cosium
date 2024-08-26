@@ -63,9 +63,19 @@ class  UnformattedClassA
 
         List.of("1", "2",     "3").stream().map( Integer::parseInt    )
 
-                .filter(number -> number % 2 == 0).
+                .filter(number
+                        ->
+                        number % 2 == 0).map( number
+                        ->
+                        number.toString()).
 
                 collect(Collectors.toSet());
+
+        //@formatter:off
+        System.
+                out
+                .println("unformatted stuff");
+        //@formatter:on
 
     }
 
@@ -97,7 +107,13 @@ public class UnformattedClassA {
         List.of("1", "2", "3").stream()
                 .map(Integer::parseInt)
                 .filter(number -> number % 2 == 0)
+                .map(number -> number.toString())
                 .collect(Collectors.toSet());
+
+        // @formatter:off
+        System.out.println("unformatted stuff");
+        // @formatter:on
+
     }
 }
 
@@ -118,3 +134,4 @@ class SomeInnerClassA {}
 - Does not seem to detect/remove wildcard unused imports
 - Does not support other formatters (for example, Palantir)
 - Created `#!/bin/bash` hook is not platform independent, should be `#!/usr/bin/env bash`
+- Google Java formatter does not support `//@formatter:off` and `//@formatter:on` instructions
