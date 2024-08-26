@@ -19,7 +19,11 @@ class  UnformattedClassA
 
         List.of("1", "2",     "3").stream().map( Integer::parseInt    )
 
-                .filter(number -> number % 2 == 0).
+                .filter(number
+                        ->
+                            number % 2 == 0).map( number
+                        ->
+                            number.toString()).
 
                 collect(Collectors.toSet());
 
